@@ -1,0 +1,83 @@
+1. Are Higher Order functions and Call back functions the same ? If not, briefly explain about both functions.
+
+Higher-order functions and callback functions are related concepts in JavaScript, but they are not the same.
+
+Higher-Order Functions:
+A higher-order function is a function that takes one or more functions as arguments and/or returns a function as its result. 
+In other words, a higher-order function treats functions as first-class citizens, allowing them to be manipulated and passed around like any other value.
+Higher-order functions can perform various operations on functions, such as transforming, filtering, composing, or executing them conditionally. They provide a way to abstract and encapsulate common patterns of behavior, promoting code reusability and modularity.
+
+Callback Functions:
+A callback function is a function that is passed as an argument to another function and is invoked or called by that function at a specific point in its execution. 
+The callback function is intended to be executed asynchronously or at a later time, often in response to an event or after some operation has completed.
+The purpose of a callback function is to specify what should happen when a certain event or operation occurs. It allows you to define custom behavior that can be executed by another function, giving you control over the flow of execution and enabling asynchronous programming.
+Callback functions are commonly used in scenarios such as event handling, asynchronous operations, and functional programming patterns like the iterator pattern.
+While callback functions are frequently used in conjunction with higher-order functions, they are not the same. Callback functions are a specific use case of functions that are passed as arguments, whereas higher-order functions encompass a broader concept of functions that can accept and/or return other functions.
+
+In summary, higher-order functions are functions that can manipulate or operate on other functions, while callback functions are functions passed as arguments to other functions, which are intended to be executed at a specific point or in response to an event. Callback functions are often used with higher-order functions, but not all higher-order functions necessarily involve callbacks.
+
+2. Is filter a Higher Order function in Javascript ? If yes, why ?
+
+Yes, the filter() method in JavaScript is considered a higher-order function.
+
+A higher-order function is a function that takes one or more functions as arguments and/or returns a function as its result. The filter() method satisfies both of these criteria.
+
+The filter() method is used on arrays and takes a callback function as an argument. This callback function is invoked for each element in the array, and based on the return value of the callback which is expected to be a boolean, the filter() method creates a new array that contains only the elements for which the callback function returns true.
+
+Ex:
+const numbers = [1, 2, 3, 4, 5];
+
+const evenNumbers = numbers.filter(function(number) {
+  return number % 2 === 0;
+});
+
+console.log(evenNumbers); 
+// Output: [2, 4]
+
+
+3. Give an example of a Higher Order function and a call back function used in the same program.
+
+// Higher-order function: map()
+function map(array, callback) {
+  const result = [];
+  for (let i = 0; i < array.length; i++) {
+    result.push(callback(array[i]));
+  }
+  return result;
+}
+
+// Callback function: capitalize()
+function capitalize(str) {
+  return str.toUpperCase();
+}
+
+//Ex:
+const names = ['john', 'jane', 'jacob'];
+const capitalizedNames = map(names, capitalize);
+console.log(capitalizedNames); 
+// Output: ['JOHN', 'JANE', 'JACOB']
+
+In the above example, the map() function acts as the higher-order function that operates on an array, and the capitalize() function is the callback function passed to map() to define the transformation logic. Together, they demonstrate the usage of a higher-order function and a callback function in the same program.
+
+4. Carefully check the example below:
+a) What will be the output of this program ?
+b) Which function is a Higher Order function here ?
+   const names= ['John', 'Tina','Kale','Max']
+   function useFunction(arr,fn){
+      for(let i=0; i<arr.length; i++){
+         fn(arr[i]);
+      }
+   }
+  function argFn (name){
+    console.log("Hello " + name );
+  }
+  useFunction(names,argFn);
+
+a)
+Hello John
+Hello Tina
+Hello Kale
+Hello Max
+
+b)
+The higher-order function in this example is useFunction(). It takes an array (arr) and a function (fn) as arguments. It iterates over each element in the array and calls the provided function fn for each element.
